@@ -3,7 +3,7 @@ server:
 
 spring:
   application:
-    name: user-service
+    name: order-service
   h2:
     console:
       enabled: true
@@ -18,21 +18,17 @@ spring:
   jpa:
     hibernate:
       ddl-auto: update
-  security:
-    user:
-      name: user
-      password: $2a$10$MjL8ItdWYOTFjkpXaha6outuaoXinlpQcoV.SURU6miRoU5L.QRUC
 
 eureka:
   instance:
-    instance-id: ${spring.cloud.client.ip-address}:${spring.application.instance_id:${random.value}}
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
     prefer-ip-address: true
-
   client:
-    register-with-eureka: true
-    fetch-registry: true
     service-url:
       defaultZone: http://127.0.0.1:8761/eureka
+    fetch-registry: true
+    register-with-eureka: true
 
-greeting:
-  message: Welcome to the Simple E-commerce. - 2nd
+logging:
+  level:
+    org.springframework.security: DEBUG

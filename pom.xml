@@ -20,6 +20,8 @@
         <module>second-service</module>
         <module>api-gateway</module>
         <module>user-service</module>
+        <module>catalog-service</module>
+        <module>order-service</module>
     </modules>
 	<name>spring-cloud-msa</name>
 	<description>Demo project for Spring Boot</description>
