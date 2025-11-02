@@ -16,6 +16,9 @@
     <modules>
         <module>eureka-server</module>
         <module>test-user</module>
+        <module>first-service</module>
+        <module>second-service</module>
+        <module>api-gateway</module>
     </modules>
 	<name>spring-cloud-msa</name>
 	<description>Demo project for Spring Boot</description>
