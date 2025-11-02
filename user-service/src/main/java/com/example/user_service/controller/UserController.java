@@ -4,12 +4,15 @@ import com.example.user_service.dto.UserDto;
 import com.example.user_service.service.UserService;
 import com.example.user_service.vo.Greeting;
 import com.example.user_service.vo.RequestUser;
+import com.example.user_service.vo.ResponseUser;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -45,7 +48,8 @@ public class UserController {
     }
 
     @PostMapping("/users")
-    public String createUser(@RequestBody RequestUser user){
+    public ResponseEntity<ResponseUser> createUser(@RequestBody RequestUser user){
+//    public String createUser(@RequestBody RequestUser user){
         // ModelMapper는 서로 다른 타입(여기서는 RequestUser -> UserDto)의 필드 값을
         // 자동으로 복사(mapping)해주는 라이브러리
         ModelMapper mapper = new ModelMapper();
@@ -61,7 +65,9 @@ public class UserController {
         UserDto userDto = mapper.map(user, UserDto.class);
         userService.createUser(userDto);
 
-        return "Create user method called.";
+        ResponseUser responseUser = mapper.map(userDto, ResponseUser.class);
+        return ResponseEntity.status(HttpStatus.CREATED).body(responseUser);
+        // return "Create user method called.";
     }
 
 }
