@@ -1,9 +1,11 @@
 server:
-  port: 8082
+#  port: 8082
+  port: 0
 
 spring:
   application:
-    name: second-service
+#    name: second-service
+    name: MY-SECOND-SERVICE
 
 eureka:
   instance:
